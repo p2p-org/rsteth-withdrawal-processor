@@ -4,6 +4,7 @@ import { logger } from './scripts/common/helpers/logger'
 import { logEnv } from './scripts/common/helpers/logEnv'
 import { processAll } from './scripts/processAll'
 import { processPriority } from './scripts/processPriority'
+import { getPendingWithdrawers } from './scripts/mellow/reads/getPendingWithdrawers'
 
 const app = express()
 
@@ -25,6 +26,15 @@ app.get('/02-process-priority', async (req: Request, res: Response) => {
   logEnv()
   await processPriority()
   logger.info('02-process-priority finished')
+})
+
+app.get('/03-get-pending-withdrawers', async (req: Request, res: Response) => {
+  logger.info('03-get-pending-withdrawers started')
+  logEnv()
+  const pendingWithdrawers = await getPendingWithdrawers()
+  logger.info('03-get-pending-withdrawers finished')
+
+  res.send(pendingWithdrawers)
 })
 
 app.listen(process.env.PORT, () =>

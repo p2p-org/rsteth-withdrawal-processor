@@ -14,7 +14,9 @@ export async function processPriority() {
     const priorityAddresses = getPriorityAddresses()
 
     if (
-      pendingWithdrawers.some((pw) => priorityAddresses.some(pr => pr.toLowerCase() === pw.toLowerCase()))
+      pendingWithdrawers.some((pw) =>
+        priorityAddresses.some((pr) => pr.toLowerCase() === pw.toLowerCase()),
+      )
     ) {
       await processAllTx()
     }

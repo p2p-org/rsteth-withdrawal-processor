@@ -1,14 +1,16 @@
 import 'dotenv/config'
 import { logger } from './scripts/common/helpers/logger'
-import { getPendingWithdrawers } from './scripts/mellow/reads/getPendingWithdrawers'
-import { getPriorityAddresses } from './scripts/mellow/reads/getPriorityAddresses'
+import { Wallet } from '@ethereumjs/wallet'
+import * as fs from 'fs'
+import { getWalletClient } from './scripts/common/helpers/clients'
+import { sleep } from './scripts/common/helpers/sleep'
 
 async function main() {
   logger.info('97-test started')
 
-  // const pendingWithdrawers = await getPendingWithdrawers()
+  const { walletClient } = await getWalletClient()
 
-  const priorityAddresses = getPriorityAddresses()
+  console.log(walletClient.account?.address)
 
   logger.info('97-test finished')
 }

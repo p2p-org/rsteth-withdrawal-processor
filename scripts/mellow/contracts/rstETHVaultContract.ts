@@ -1,6 +1,3 @@
-import { getContract } from 'viem'
-import { publicClient, walletClient } from '../../common/helpers/clients'
-
 export const VaultAbi = [
   {
     inputs: [
@@ -920,11 +917,3 @@ if (!process.env.RSTETH_VAULT_CONTRACT_ADDRESS) {
 export const rstETHVaultContractAddresss = process.env
   .RSTETH_VAULT_CONTRACT_ADDRESS as `0x${string}`
 
-export const rstETHVaultContract = getContract({
-  address: rstETHVaultContractAddresss,
-  abi: VaultAbi,
-  client: {
-    public: publicClient,
-    wallet: walletClient,
-  },
-})

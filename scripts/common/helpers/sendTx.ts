@@ -1,5 +1,5 @@
 import { logger } from './logger'
-import { account, publicClient, walletClient } from './clients'
+import { getWalletClient } from './clients'
 import {
   Address,
   BaseError,
@@ -22,6 +22,8 @@ export async function sendTx(
   if (!process.env.MAX_PIORITY_FEE_PER_GAS_IN_GWEI) {
     throw new Error('No MAX_PIORITY_FEE_PER_GAS_IN_GWEI in ENV')
   }
+
+  const { account, publicClient, walletClient } = await getWalletClient()
 
   let txHash = ''
 

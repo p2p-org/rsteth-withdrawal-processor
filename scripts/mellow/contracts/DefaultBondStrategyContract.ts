@@ -1,6 +1,3 @@
-import { getContract } from 'viem'
-import { publicClient, walletClient } from '../../common/helpers/clients'
-
 export const DefaultBondStrategyAbi = [
   {
     inputs: [
@@ -362,11 +359,3 @@ if (!process.env.DEFAULT_BOND_STRATEGY_ADDRESS) {
 export const DefaultBondStrategyContractAddresss = process.env
   .DEFAULT_BOND_STRATEGY_ADDRESS as `0x${string}`
 
-export const DefaultBondStrategyContract = getContract({
-  address: DefaultBondStrategyContractAddresss,
-  abi: DefaultBondStrategyAbi,
-  client: {
-    public: publicClient,
-    wallet: walletClient,
-  },
-})
